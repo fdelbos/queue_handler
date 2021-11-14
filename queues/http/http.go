@@ -12,9 +12,8 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/rs/zerolog/log"
-
 	"github.com/fdelbos/queue_handler/queues"
+	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 )
 
@@ -110,6 +109,7 @@ func setStatusOK(w shttp.ResponseWriter) {
 
 func (q httpQueue) handlerFunc() shttp.HandlerFunc {
 	return func(w shttp.ResponseWriter, r *shttp.Request) {
+
 		if data, err := io.ReadAll(r.Body); err != nil {
 			log.Error().Err(err).Msg("cant read request body")
 
